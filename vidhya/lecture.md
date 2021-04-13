@@ -192,3 +192,139 @@ re.sub(pattern,replacement,text)
 
 
 
+## Module3 First Step of NLP - Text Processing
+
+### Tokenization and Text Normalization
+
+**Corpus** -> Collection of text documents
+
+Corpus > Documents > Paragraphs > Sentences > Tokens
+
+Tokens : Smaller unit of a text (words, phrasesm ngrams)
+
+Ngrams : combinations of N words / Character together
+
+**Example**
+
+Sentence: I love my phone
+
+Unigrams (n = 1) : I, Love, my, phone
+
+Bigrams (n=2) : I love, love my, my phone
+
+Trigrams (n = 3) : I love my, love my phone
+
+**Tokenization**
+
+- Process of spliting a text object into smaller units (tokens)
+- Smaller Units: words, numbers, symbols, ngrams, characters
+- White space tokenizer / Unigram tokenizer
+  - Sentence : "I went to New-York to play football"
+  - Tokens : "I", "went", "to", "New-York", "to", "play", "football"
+- Regular expression tokenizer
+  - Sentence: "Football,Cricket;Golf Tennis"
+  - re.split(r'[,;\s],line')
+  - Tokens: "Football","Cricket","Golf","Tennis"
+
+**Normalization**
+
+- Morpheme : base form of a word
+- Structure of token : <prefix> <morpheme> <suffix>
+  - Example: Aninationalist : Anti + national + ist
+- Normalization : Process of converting a token into its base form (morpheme)
+- Helpful in reducing data dimensionality, text cleaning
+- Types : Stemming and Lemmatization
+
+
+
+**Normalization : Stemming**
+
+- Elementary rule based process of removal of inflectional forms from a token
+
+- Outputs the stem of a word
+
+  - Example : "laughing", "laughed", "laughs", "laugh" >>> "laugh"
+
+- May generate **non-meaningful** terms
+
+  - Example : "his team are not winning"
+
+  - > hi team are not winn
+
+<table>
+  <tr>
+    <th>Form</th>
+    <th>Suffix</th>
+    <th>Stem</th>
+  </tr>
+  <tr>
+    <td>Studies</td>
+    <td>-es</td>
+    <td>studi</td>
+  </tr>
+  <tr>
+    <td>Studying</td>
+    <td>-ing</td>
+    <td>study</td>
+  </tr>
+</table>
+
+
+
+**Normalization : Lemmatization**
+
+- Systematic process for reducing a token to its lemma
+- Makes use of vocabularym word structure, part of speech tags and grammar relations
+- Example
+  - am, are, is >> be
+  - running, ran, run, rans >> run
+- Running, 'verb' >> run
+- Running, 'noun' >> running
+
+
+
+### Part of Speech Tagging and Grammar Parsing
+
+#### Part of Speech Tags
+
+- Defines the syntactic context and role of words in the sentence
+- Common POS Tags : Nouns, Verbs, Adjectives, Adverbs
+- Example
+  - Sentence : David has purchased a new laptop from Apple Store
+    - ​			noun + verb + (adjective) noun
+- Defined by their relationship with the adjacent words
+- Machine learning or Rule based process
+- Uses
+  - Text cleaning
+  - Feature engineering tasks
+  - Word sense disambiguation
+- Example
+  - Sentence1 : Please **book** my flight for NewTork
+  - Sentence2 : I like to read a **book** on NewYork
+
+
+
+#### Constiruency Grammar
+
+- Constituents : Words / phrases / group of words
+- Constituency Grammar : Organize any sentence into constituents using their properties
+- Properties : Part of Speech Tags / Noun Phrases / Verb Phrases
+
+Sentence : <subject> <context> <object>
+
+<subject> The cats / The digs / They
+
+<context> are running / are barking / are eating
+
+<obj> in the park / happliy / since the morning
+
+
+
+#### Dependency Grammar
+
+- Words of a sentence depends on which other words (dependencies)
+  - Example : Modifiers (barking dog)
+- Organize words of a sentence according to their dependencies
+- All the word are directly or indirectly linked to the root using links
+- These dependencies represents relationship among the words in a sentence
+
